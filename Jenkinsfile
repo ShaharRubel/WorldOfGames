@@ -23,10 +23,10 @@ environment {
         }
         stage("Test application"){
             steps {
-                bat 'python e2e.py'
+                bat 'python ./tests/e2e.py'
             }
         }
-        stage("finalize and push image"){
+        stage("Finalize and push image"){
             steps {
             script {
                    withCredentials([usernamePassword(credentialsId: registryCredential, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
