@@ -1,7 +1,7 @@
 version: "3"
 services:
   wogfrontend:
-    image: "worldofgames"
+    image: "darkerlighter/worldofgames"
     ports:
       - "8777:5000"
     volumes:

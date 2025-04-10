@@ -1,5 +1,9 @@
 pipeline {
 agent any
+environment {
+   registryCredential = 'dockerhub_id'
+   imagename = "darkerlighter/worldofgames"
+    }
     stages {
         stage("Clone Repo") {
             steps {
@@ -9,6 +13,7 @@ agent any
         stage("Building docker image"){
             steps {
                 bat 'docker build -t worldofgames .'
+                bat "docker tag worldofgames ${imagename}:latest"
             }
         }
         stage("Run dockerized application"){
@@ -23,7 +28,17 @@ agent any
         }
         stage("finalize and push image"){
             steps {
-                bat 'echo pass'
+            script {
+                   withCredentials([usernamePassword(credentialsId: registryCredential, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                       // Login with credentials
+                       bat "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+                       // Push the image
+                       bat "docker push ${imagename}:latest"
+
+                       bat 'docker-compose down'
+                       bat "docker image rmi ${imagename}:latest"
+                   }
+                }
             }
         }
     }
