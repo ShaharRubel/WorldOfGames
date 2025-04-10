@@ -13,7 +13,7 @@ agent any
         }
         stage("Run dockerized application"){
             steps {
-                bat 'docker-compose up'
+                bat 'docker-compose up -d'
             }
         }
         stage("Test application"){
