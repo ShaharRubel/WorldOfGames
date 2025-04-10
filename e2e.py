@@ -21,7 +21,7 @@ def test_scores_service(URL):
 
 def main_function():
     # if test_score_service returns True
-    if test_scores_service("http://127.0.0.1:5000"):
+    if test_scores_service("http://127.0.0.1:8777"):
         print("exit normally")
         sys.exit(0)
     # if test_score_service returns False exit with error

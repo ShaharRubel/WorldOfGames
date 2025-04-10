@@ -4,3 +4,5 @@ services:
     image: "worldofgames"
     ports:
       - "8777:5000"
+    volumes:
+      - ./upload/Scores.txt:/app/Scores.txt
