@@ -1,6 +1,6 @@
 version: "3"
 services:
   wogfrontend:
-    build: .
+    image: "worldofgames"
     ports:
-      - "5000:5000"
+      - "8777:5000"

@@ -8,7 +8,7 @@ def test_scores_service(URL):
     # define driver
     driver = webdriver.Chrome()
     # get URL
-    driver.get("http://127.0.0.1:5000")
+    driver.get("http://127.0.0.1:8777")
     # Get score from response
     score = int(driver.find_element(By.ID, "score").text)
     # if between 1 and 1000 return true
